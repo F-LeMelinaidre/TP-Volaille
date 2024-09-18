@@ -15,6 +15,20 @@ public enum VolailleType {
         this.poidsAbbatage = poidsAbbatage;
     }
 
+    public static VolailleType getById(int id) {
+        switch (id) {
+            case 1 -> {
+                return VolailleType.CANARD;
+            }
+            case 2 -> {
+                return VolailleType.POULET;
+            }
+            default -> {
+                return null;
+            }
+        }
+    }
+
     public int getId() { return id; }
     public double getPoidsAbbatage() {
         return poidsAbbatage;

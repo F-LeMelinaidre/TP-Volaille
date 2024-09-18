@@ -1,11 +1,11 @@
 import asset.VolailleType;
-import entity.VolailleEntity;
 import entity.VolailleGroupEntity;
 import view.table.VolailleGroupTable;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
@@ -21,5 +21,36 @@ public class Main {
         List<VolailleGroupEntity> listData           = new ArrayList<>(volailleList.values());
         VolailleGroupTable        volailleGroupTable = new VolailleGroupTable(listData);
         volailleGroupTable.render();
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ajouter un lot");
+        System.out.println("Saisissez la date d'entrée:");
+        String date = sc.nextLine();
+
+        System.out.println("Saisissez la categorie :");
+        for (int i = 1; i <= VolailleType.values().length; i++) {
+            System.out.println(i + " : " + VolailleType.getById(i));
+        }
+        boolean      next = false;
+        VolailleType type = null;
+        while (! next) {
+            System.out.println("Saisissez votre choix :");
+            int choice = Integer.parseInt(sc.nextLine());
+            if (choice > 0 && choice <= VolailleType.values().length) {
+                next = true;
+                type = VolailleType.getById(choice);
+            }
+        }
+        sc.nextLine();
+        System.out.println("Saisissez ne nombre d'individus :");
+        int quantity = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Saisissez l'age d'entrée :");
+        int age = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Saisissez le poid moyen :");
+        double poid = sc.nextDouble();
+        sc.nextLine();
+        System.out.println(date + " " + type + " " + quantity + " " + age + " " + Double.toString(poid));
     }
 }
