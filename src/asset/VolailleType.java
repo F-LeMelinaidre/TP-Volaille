@@ -3,34 +3,45 @@ package asset;
 import java.util.ArrayList;
 
 public enum VolailleType {
-    CANARD (1, 3.60),
-    POULET (2, 2.15);
+
+    ALL (0, "Tous"),
+    CANARD (1, "Canards"/*3.60*/),
+    POULET (2, "Poulets"/*2.15*/);
 
     private int id;
-    private final double poidsAbbatage;
-    private double prixKilo = 0.0;
+    private String label;
 
-    VolailleType(int id, double poidsAbbatage) {
+    /*private final double poidsAbbatage;
+    private double prixKilo = 0.0;*/
+
+    VolailleType(int id, String label/*double poidsAbbatage*/) {
         this.id = id;
-        this.poidsAbbatage = poidsAbbatage;
+        this.label = label;
+
+        /*this.poidsAbbatage = poidsAbbatage;*/
     }
 
     public static VolailleType getById(int id) {
         switch (id) {
+            case 0 -> {
+                return ALL;
+            }
             case 1 -> {
-                return VolailleType.CANARD;
+                return CANARD;
             }
             case 2 -> {
-                return VolailleType.POULET;
+                return POULET;
             }
             default -> {
-                return null;
+                return ALL;
             }
         }
     }
 
     public int getId() { return id; }
-    public double getPoidsAbbatage() {
+    public String getLabel() { return label; }
+
+    /*public double getPoidsAbbatage() {
         return poidsAbbatage;
     }
 
@@ -48,6 +59,6 @@ public enum VolailleType {
             names.add(type.name());
         }
         return names;
-    }
+    }*/
 
 }
