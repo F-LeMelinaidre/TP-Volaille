@@ -16,15 +16,15 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
 
         System.out.println("        +&-");
-        System.out.println("      _.-^-._    .--.");
-        System.out.println("   .-'   _   '-. |__|");
-        System.out.println("  /     |_|     \\|  |");
-        System.out.println(" /               \\  |");
-        System.out.println("/|     _____     |\\ |");
-        System.out.println(" |    |==|==|    |  |");
-        System.out.println(" |    |--|--|    |  |---|---|---|---|---|");
-        System.out.println(" |    |--|--|    |  |---|---|---|---|---|");
-        System.out.println(" |    |==|==|    |  |---|---|---|---|---|");
+        System.out.println("      _.-^-._    ┌──┐");
+        System.out.println("   .-'═══════'-. ╞══╡");
+        System.out.println("  /     ┌─┐     \\│  │");
+        System.out.println(" /══════└─┘══════\\  │");
+        System.out.println("/╞═══════════════╡\\ │");
+        System.out.println(" │    ╓──┬──╖    │  │");
+        System.out.println(" │    ╠══╪══╣    │  │");
+        System.out.println(" ╞════╣  │  ╠════╡  ├───╫───╫───╫───╫───╢");
+        System.out.println(" │    ╠══╪══╣    │  ├───╫───╫───╫───╫───╢");
         System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
 /*
         MenuRenderer menu = new MenuRenderer();
@@ -35,14 +35,14 @@ public class Main {
             currentHandler.handleMenu();
             currentHandler = NavigationManager.getCurrentHandler();
         }*/
-        App app = App.getInstance();
-        app.run();
-        /*VolailleGroupEntity group1 = new VolailleGroupEntity("12/05/2023", VolailleType.POULET, 50, 8, 0.5);
+        VolailleGroupEntity group1 = new VolailleGroupEntity("12/05/2023", VolailleType.POULET, 50, 8, 0.5);
         VolailleGroupEntity group2 = new VolailleGroupEntity("14/05/2023", VolailleType.CANARD, 35, 5, 0.5);
         VolailleGroupEntity group3 = new VolailleGroupEntity("14/05/2023", VolailleType.POULET, 20, 6, 0.6);
         VolailleGroupEntity group4 = new VolailleGroupEntity("14/05/2023", VolailleType.POULET, 35, 5, 0.3);
+        App app = App.getInstance();
+        app.run();
 
-        Map<String, VolailleGroupEntity> volailleList = VolailleGroupEntity.getVolailleGroupMap();
+        /*Map<String, VolailleGroupEntity> volailleList = VolailleGroupEntity.getVolailleGroupMap();
 
         List<VolailleGroupEntity> listData           = new ArrayList<>(volailleList.values());
         VolailleGroupTable        volailleGroupTable = new VolailleGroupTable(listData);

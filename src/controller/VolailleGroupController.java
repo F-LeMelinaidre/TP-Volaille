@@ -1,5 +1,12 @@
 package controller;
 
+import entity.VolailleGroupEntity;
+import view.table.VolailleGroupTable;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 public class VolailleGroupController implements IController
 {
 
@@ -15,6 +22,10 @@ public class VolailleGroupController implements IController
     @Override
     public void read() {
         System.out.println("Volaille Group Read");
+        Map<String, VolailleGroupEntity> volailleList = VolailleGroupEntity.getVolailleGroupMap();
+        List<VolailleGroupEntity> listData           = new ArrayList<>(volailleList.values());
+        VolailleGroupTable volailleGroupTable = new VolailleGroupTable(listData);
+        volailleGroupTable.render();
     }
 
     @Override

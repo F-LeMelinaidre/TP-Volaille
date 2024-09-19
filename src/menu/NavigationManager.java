@@ -17,8 +17,10 @@ public class NavigationManager
         App.getInstance().setCurrentHandler(new MainMenuHandler(menu));
     }
     public static void menuVolailleGroup(MenuRenderer menu, VolailleType volailleType) {
-        App.getInstance().setCurrentHandler(new CrudMenuHandler(menu, volailleType.getLabel(), VolailleGroupController.getINSTANCE()));
+        App.getInstance().setCurrentHandler(new VolailleGroupMenuHandler(menu, volailleType.getLabel(), VolailleGroupController.getINSTANCE()));
     }
+    //TODO CREE UN MENU menuRead
+    //TODO MODIFICATION DU TARIF (sauvegardé les lot sortie dans un autre fichier avec le tarif vendu, faire une liste des sortie, et un fichier detail)
 
     /*public void navigateToPouletMenu(Menu menu) {
         CrudController pouletController = new PouletController();

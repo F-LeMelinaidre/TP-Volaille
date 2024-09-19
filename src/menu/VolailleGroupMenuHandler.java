@@ -5,7 +5,7 @@ import controller.IController;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class CrudMenuHandler implements IMenuHandler
+public class VolailleGroupMenuHandler implements IMenuHandler
 {
 
     private MenuRenderer menu;
@@ -13,14 +13,14 @@ public class CrudMenuHandler implements IMenuHandler
     private ArrayList options = new ArrayList<>(
             Arrays.asList("Afficher un lot", "Ajouter un lot", "Sortir un lot", "Retour au menu principal"));
 
-    public CrudMenuHandler(MenuRenderer menu, String label, IController instance) {
+    public VolailleGroupMenuHandler(MenuRenderer menu, String label, IController instance) {
+
         this.menu = menu;
         this.menu.setOptions(this.options);
         this.menu.setTitle(label);
         this.menu.render();
 
         this.controller = instance;
-
     }
 
     @Override
