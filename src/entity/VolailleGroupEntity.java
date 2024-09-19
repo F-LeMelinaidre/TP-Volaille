@@ -13,12 +13,12 @@ import java.util.Map;
 public class VolailleGroupEntity {
 
     private static Map<String, VolailleGroupEntity> volailleGroupMap = new HashMap<>();
-    private        String                           idGroup;
-    private        String                           entryDate;
-    private        VolailleType                     groupsType;
-    private        int                              quantityItems;
-    private        int                              entryAge;
-    private        double                           averageWeight;
+    private String idGroup;
+    private String entryDate;
+    private VolailleType groupsType;
+    private int quantityItems;
+    private int entryAge;
+    private double averageWeight;
 
 
     public VolailleGroupEntity(String entryDate, VolailleType groupsType, int quantityItems, int entryAge,
@@ -80,9 +80,9 @@ public class VolailleGroupEntity {
     }
 
     public long getCurrentAge() {
-        Calendar  entryDate      = this.getEntryCalendarDate();
+        Calendar entryDate = this.getEntryCalendarDate();
         LocalDate localDateEntry = DateConverter.CalendarToLocalDate(entryDate);
-        LocalDate currentDate    = LocalDate.now();
+        LocalDate currentDate = LocalDate.now();
 
         long daysBetween = ChronoUnit.DAYS.between(localDateEntry, currentDate);
         return daysBetween / 7;

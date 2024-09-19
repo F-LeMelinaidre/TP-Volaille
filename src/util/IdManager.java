@@ -6,26 +6,30 @@ import java.util.function.Function;
 
 public class IdManager {
 
-    /** Prepare le format de la date pour l'id*/
-    private static final SimpleDateFormat     sdf   = new SimpleDateFormat("yyMMdd");
+    /**
+     * Prepare le format de la date pour l'id
+     */
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
 
-    /** Stock le nombre d'enregistrment pour chaque date */
+    /**
+     * Stock le nombre d'enregistrment pour chaque date
+     */
     private static final Map<Long, Integer> dateCounters = new HashMap<>();
 
     /**
      * Initialise les compteurs pour chaque date des objets de la liste
      * <p>
      * {@code Function<T, Calendar>}
-     *     Getter de la date de l'objet.
-     *     Cette fonction doit renvoyer un objet de type `Calendar` représentant la date de l'objet
+     * Getter de la date de l'objet.
+     * Cette fonction doit renvoyer un objet de type `Calendar` représentant la date de l'objet
      * <p>
      * {@code Function<T, String>}
-     *     Getter de l'ID de l'objet.
-     *     Cette fonction doit renvoyer une chaîne de caractères représentant l'ID de l'objet.
+     * Getter de l'ID de l'objet.
+     * Cette fonction doit renvoyer une chaîne de caractères représentant l'ID de l'objet.
      *
-     * @param mapObject Liste d'objets
+     * @param mapObject       Liste d'objets
      * @param getCalendarDate Date de l'objet
-     * @param getId Id de l'objet
+     * @param getId           Id de l'objet
      * @param <T>
      */
     public static <T> void initCounters(Map<String, T> mapObject, Function<T, Calendar> getCalendarDate,
@@ -34,7 +38,7 @@ public class IdManager {
         Iterator<Map.Entry<String, T>> iterator = mapObject.entrySet().iterator();
         while (iterator.hasNext()) {
             Map.Entry<String, T> entry = iterator.next();
-            T                    obj   = entry.getValue();
+            T obj = entry.getValue();
 
             String id = getId.apply(obj);
             Calendar date = getCalendarDate.apply(obj);
@@ -65,6 +69,7 @@ public class IdManager {
     /**
      * Créé un id au format int-yyMMdd-int => id_type-date-compteur
      * <p>
+     *
      * @param prefix pour differencier les type d'objet
      * @param date
      * @return
