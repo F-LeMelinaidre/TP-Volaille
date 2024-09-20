@@ -1,10 +1,7 @@
 import asset.VolailleType;
 import controller.App;
 import entity.VolailleGroupEntity;
-import menu.IMenuHandler;
-import menu.MainMenuHandler;
-import menu.MenuRenderer;
-import menu.NavigationManager;
+import menu.*;
 import view.table.VolailleGroupTable;
 
 import java.util.ArrayList;
@@ -39,8 +36,11 @@ public class Main {
         VolailleGroupEntity group2 = new VolailleGroupEntity("14/05/2023", VolailleType.CANARD, 35, 5, 0.5);
         VolailleGroupEntity group3 = new VolailleGroupEntity("14/05/2023", VolailleType.POULET, 20, 6, 0.6);
         VolailleGroupEntity group4 = new VolailleGroupEntity("14/05/2023", VolailleType.POULET, 35, 5, 0.3);
-        App app = App.getInstance();
-        app.run();
+        /*App app = App.getInstance();
+        app.run();*/
+
+        MenuHandler menuHandler = new MenuHandler();
+        menuHandler.run();
 
         /*Map<String, VolailleGroupEntity> volailleList = VolailleGroupEntity.getVolailleGroupMap();
 

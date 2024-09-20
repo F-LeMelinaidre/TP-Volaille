@@ -8,8 +8,6 @@ import java.util.Scanner;
 public class MenuRenderer
 {
 
-    private static MenuRenderer menu = null;
-
     private static enum Border
     {CORNER, LINE, TOP, MIDDLE, BOTTOM, LEFT, RIGHT, NONE}
 

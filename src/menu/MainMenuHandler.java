@@ -5,32 +5,36 @@ import asset.VolailleType;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MainMenuHandler implements IMenuHandler
+public class MainMenuHandler extends MenuHandler implements IMenuHandler
 {
 
-    private MenuRenderer menu;
+    private static IMenuHandler Instance;
     private ArrayList options = new ArrayList<>(
             Arrays.asList("Afficher tous les lots", "Afficher les lots de Canards", "Afficher les lots de Poulets", "Quitter"));
 
-    public MainMenuHandler(MenuRenderer menu) {
-
-        this.menu = menu;
+    private MainMenuHandler() {
+        this.maxOptions = this.options.size();/*
         this.menu.setTitle("Menu Principal");
-        this.menu.setOptions(this.options);
-        this.menu.render();
+        this.menu.setOptions(this.options);*/
+
     }
+
+    protected static IMenuHandler getInstance() {
+        if (Instance == null) {
+            Instance = new MainMenuHandler();
+        }
+        return Instance;
+    }
+
 
     @Override
     public void handleMenu() {
-
-        int choice = InputHandler.getChoice(options.size());
-
+        this.setCurrentMenu(this);
         switch (choice) {
             case 0:
             case 1:
             case 2:
 
-                NavigationManager.menuVolailleGroup(this.menu, VolailleType.getById(choice));
                 break;
             case 3:
                 // TODO Enregistrer les données
@@ -38,7 +42,7 @@ public class MainMenuHandler implements IMenuHandler
                 System.exit(0);
                 break;
             default:
-                NavigationManager.mainMenu(this.menu);
+                this.currentHandler = new MainMenuHandler();
                 break;
         }
 

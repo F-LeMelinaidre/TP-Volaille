@@ -2,6 +2,6 @@ package menu;
 
 public interface IMenuHandler {
 
-    void handleMenu();
+    abstract void handleMenu();
 
 }

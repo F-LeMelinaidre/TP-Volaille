@@ -6,18 +6,18 @@ import menu.MenuRenderer;
 import menu.NavigationManager;
 
 public class App {
-    private static App instance;
+    /*private static App instance;
     private MenuRenderer menu;
-    private IMenuHandler currentHandler;
+    private IMenuHandler currentHandler;*/
 
     private App() {
-        this.menu = new MenuRenderer();
+        /*this.menu = new MenuRenderer();
         // Créer une instance de NavigationManager
         // Passer l'instance de NavigationManager au MainMenuHandler
-        this.currentHandler = new MainMenuHandler(menu);
+        this.currentHandler = new MainMenuHandler(menu);*/
     }
 
-    public static App getInstance() {
+    /*public static App getInstance() {
         if (instance == null) {
             instance = new App();
         }
@@ -29,8 +29,8 @@ public class App {
     }
 
     public void run() {
-        while (true) {
+        *//*while (true) {
             currentHandler.handleMenu();
-        }
-    }
+        }*//*
+    }*/
 }
