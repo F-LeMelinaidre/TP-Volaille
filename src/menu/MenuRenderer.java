@@ -3,6 +3,7 @@ package menu;
 import asset.DoubleTableBorder;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MenuRenderer
@@ -35,12 +36,12 @@ public class MenuRenderer
      *
      * @param inputOptions Liste des options du menu
      */
-    public void setOptions(ArrayList<String> inputOptions) {
+    public void setOptions(List<String> inputOptions) {
         this.options = new ArrayList<>();
 
         int nbChoice = inputOptions.size();
         for (int i = 0; i < nbChoice; i++) {
-            String option = i + " : " + inputOptions.get(i);
+            String option = "[" + i + "] " + inputOptions.get(i);
 
             this.options.add(option);
             this.setMaxWidth(option.length());
@@ -66,6 +67,7 @@ public class MenuRenderer
         }
 
         System.out.println(this.createSeparator(Direction.BOTTOM));
+        System.out.print("Choisissez une option : ");
         width = 0;
     }
 

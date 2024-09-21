@@ -1,10 +1,5 @@
 package controller;
 
-import menu.IMenuHandler;
-import menu.MainMenuHandler;
-import menu.MenuRenderer;
-import menu.NavigationManager;
-
 public class App {
     /*private static App instance;
     private MenuRenderer menu;

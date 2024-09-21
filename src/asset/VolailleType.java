@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public enum VolailleType {
 
-    ALL (0, "Tous"),
     CANARD (1, "Canards"/*3.60*/),
     POULET (2, "Poulets"/*2.15*/);
 
@@ -23,18 +22,12 @@ public enum VolailleType {
 
     public static VolailleType getById(int id) {
         switch (id) {
-            case 0 -> {
-                return ALL;
-            }
-            case 1 -> {
+            case 1:
                 return CANARD;
-            }
-            case 2 -> {
+            case 2:
                 return POULET;
-            }
-            default -> {
-                return ALL;
-            }
+            default:
+                throw new IllegalArgumentException("ID invalide : " + id);
         }
     }
 
