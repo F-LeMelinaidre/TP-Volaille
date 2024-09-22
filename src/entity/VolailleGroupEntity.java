@@ -83,11 +83,16 @@ public class VolailleGroupEntity implements Serializable
     }
 
     public String getCurrentAge() {
+        //Date d'entrée
         Calendar entryDate = this.getEntryCalendarDate();
         LocalDate localDateEntry = DateConverter.CalendarToLocalDate(entryDate);
+        //Date d'entrée moins l'age d'entrée
+        LocalDate EntryDateUpdated = localDateEntry.minusWeeks(this.entryAge);
+        //Date courante
         LocalDate currentDate = LocalDate.now();
 
-        Period period = Period.between(localDateEntry, currentDate);
+
+        Period period = Period.between(EntryDateUpdated, currentDate);
 
         int monthsInt = period.getMonths();
         int daysBetween = period.getDays();
