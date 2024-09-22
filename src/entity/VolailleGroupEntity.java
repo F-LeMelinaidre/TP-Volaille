@@ -6,6 +6,7 @@ import util.IdManager;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -86,11 +87,15 @@ public class VolailleGroupEntity implements Serializable
         LocalDate localDateEntry = DateConverter.CalendarToLocalDate(entryDate);
         LocalDate currentDate = LocalDate.now();
 
-        long daysBetween = ChronoUnit.DAYS.between(localDateEntry, currentDate);
-        long weeks = (daysBetween / 7) + this.entryAge;
-        long days = daysBetween % 7;
+        Period period = Period.between(localDateEntry, currentDate);
 
-        return weeks + " semaines et " + days + " jours";
+        int monthsInt = period.getMonths();
+        int daysBetween = period.getDays();
+
+        long weeks = daysBetween / 7;
+        long days = daysBetween % 7;
+        String months = (monthsInt == 0) ? String.format("%8s", "") : String.format("%02d", monthsInt) + " mois ";
+        return months + String.format("%02d", weeks) + " semaines et " + days + " jours";
     }
 
     public double getAverageWeight() {
