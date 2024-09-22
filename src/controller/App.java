@@ -33,6 +33,7 @@ public class App
         try {
             Map<String, VolailleGroupEntity> data = bf.readFile();
             if (data != null) {
+                System.out.println("Données chargées");
                 VolailleGroupEntity.setVolailleGroupMap(data);
             }
         } catch (IOException e) {

@@ -81,14 +81,16 @@ public class VolailleGroupEntity implements Serializable
         return this.entryAge;
     }
 
-    public long getCurrentAge() {
+    public String getCurrentAge() {
         Calendar entryDate = this.getEntryCalendarDate();
         LocalDate localDateEntry = DateConverter.CalendarToLocalDate(entryDate);
         LocalDate currentDate = LocalDate.now();
 
         long daysBetween = ChronoUnit.DAYS.between(localDateEntry, currentDate);
-        return daysBetween / 7;
+        long weeks = (daysBetween / 7) + this.entryAge;
+        long days = daysBetween % 7;
 
+        return weeks + " semaines et " + days + " jours";
     }
 
     public double getAverageWeight() {

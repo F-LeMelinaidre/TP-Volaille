@@ -35,11 +35,11 @@ public class VolailleGroupController implements IController
         if (identifiant != null) {
             VolailleGroupEntity volailleGroup = volailleList.get(identifiant);
 
-            System.out.println("     \nIdentifant du lot : " + volailleGroup.getIdGroup());
+            System.out.println("\n   Identifant du lot : " + volailleGroup.getIdGroup());
             System.out.println("       Date d'entrée : " + volailleGroup.getEntryDate());
             System.out.println("    Type de volaille : " + volailleGroup.getGroupsType());
             System.out.println("  Nombre d'individus : " + volailleGroup.getQuantityItems());
-            System.out.println("        Age d'entrée : " + volailleGroup.getEntryAge());
+            System.out.println("        Age d'entrée : " + volailleGroup.getEntryAge() + " semaines");
             System.out.println("          Age actuel : " + volailleGroup.getCurrentAge());
             System.out.println("      Age poid moyen : " + volailleGroup.getAverageWeight() + "\n");
 
@@ -69,7 +69,7 @@ public class VolailleGroupController implements IController
 
 
         String title = (id == 0) ? "Volailles" : type.getName();
-        System.out.printf("%n%s%n", "Lots de " + title);
+        System.out.printf("%n%s%n", "Lots des " + title);
 
         VolailleGroupTable volailleGroupTable = new VolailleGroupTable(dataList);
         return volailleGroupTable.render();

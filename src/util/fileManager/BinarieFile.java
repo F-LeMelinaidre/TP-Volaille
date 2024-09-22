@@ -8,11 +8,11 @@ public class BinarieFile<T> extends FileTemp<Map<String, T>>
 {
 
     public BinarieFile(String fileName) {
+
         this.filePath += "/binarie";
         this.fileName = fileName;
         this.directory = new File(filePath);
 
-        System.out.println(filePath);
     }
 
     @Override

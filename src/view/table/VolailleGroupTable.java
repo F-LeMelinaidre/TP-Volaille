@@ -23,7 +23,7 @@ public class VolailleGroupTable extends Table<VolailleGroupEntity> {
                 volailleGroup.getEntryDate(),
                 Integer.toString(volailleGroup.getQuantityItems()),
                 Integer.toString(volailleGroup.getEntryAge()) + " semaines",
-                Long.toString(volailleGroup.getCurrentAge()) + " semaines",
+                volailleGroup.getCurrentAge(),
                 Double.toString((volailleGroup.getAverageWeight())) + " Kg"
         };
     }
