@@ -31,12 +31,14 @@ public class MainMenu extends Menu {
             case 0:
             case 1:
             case 2:
+                VolailleType type = (choice == 0) ? null : VolailleType.getById(choice);//TODO MODIFIER POUR GARDER EN MEMOIRE LE TYPE
                 VolailleGroupController vollaileGroup = VolailleGroupController.getINSTANCE();
-                boolean result = vollaileGroup.readAll(choice);
+                boolean result = vollaileGroup.readAll(type);
                 menu = (result) ? MenuManager.VOLAILLE_MENU : MenuManager.MAIN_MENU;
                 menu.setChoice(choice);
                 break;
             case 3:
+                System.out.println("Modification des tarifs");
                 break;
             case 4:
                 app.close();

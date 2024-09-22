@@ -6,6 +6,7 @@ import java.util.Map;
 
 public class BinarieFile<T> extends FileTemp<Map<String, T>>
 {
+    protected static final String EXTENSION = "bin";
 
     public BinarieFile(String fileName) {
 
@@ -15,12 +16,10 @@ public class BinarieFile<T> extends FileTemp<Map<String, T>>
 
     @Override
     public void writeFile(Map<String, T> data) throws IOException {
-        try {
-            if (!directory.exists()) {
-                directory.mkdirs();
-            }
 
-            File file = new File(directory, this.fileName + ".bin");
+        try {
+
+            File file = new File(this.directory, this.fileName);
             //Ouverture du flux de sortie
             FileOutputStream fos = new FileOutputStream(file);
             //Création du flux objet vers le flux de fichier
@@ -50,7 +49,7 @@ public class BinarieFile<T> extends FileTemp<Map<String, T>>
         try {
 
             //ouverture du flux d'entrée
-            FileInputStream fis = new FileInputStream(this.filePath + "/" + this.fileName + ".bin");
+            FileInputStream fis = new FileInputStream(this.filePath + "/" + this.fileName);
             //création du flux objet
             ObjectInputStream ois = new ObjectInputStream(fis);
 
@@ -74,5 +73,10 @@ public class BinarieFile<T> extends FileTemp<Map<String, T>>
         }
 
         return data;
+    }
+
+    @Override
+    protected String getExtension() {
+        return EXTENSION;
     }
 }

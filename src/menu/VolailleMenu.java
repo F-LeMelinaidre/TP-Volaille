@@ -18,7 +18,8 @@ public class VolailleMenu extends Menu
 
     @Override
     public Menu display() {
-        VolailleType type = (this.choice == 0) ? null : VolailleType.getById(this.choice);
+        VolailleType type = (this.choice == 0) ? null : VolailleType.getById(this.choice);//TODO MODIFIER
+        vollaileGroup = VolailleGroupController.getINSTANCE();
 
         String title = (this.choice == 0) ? "Volailles" : type.getName();
         menuRenderer.setTitle(title);
@@ -31,17 +32,18 @@ public class VolailleMenu extends Menu
         Menu menu = this;
         switch (choice) {
             case 0:
-                vollaileGroup = VolailleGroupController.getINSTANCE();
+
                 vollaileGroup.create(type);
 
                 break;
             case 1:
-                vollaileGroup = VolailleGroupController.getINSTANCE();
+
                 boolean result = vollaileGroup.read();
                 menu = (result) ? MenuManager.SUB_ACTION : MenuManager.VOLAILLE_MENU;
                 break;
             case 2:
-                System.out.println("Export");
+                vollaileGroup.csvExport(type);
+                menu = MenuManager.VOLAILLE_MENU;
                 break;
             case 3:
                 menu = MenuManager.MAIN_MENU;

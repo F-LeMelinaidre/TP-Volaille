@@ -1,30 +1,59 @@
 package util.fileManager;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Map;
+import java.util.List;
 
-public class CsvFile<T> extends FileTemp<Map<String, T>>
+public class CsvFile<T extends CsvSerializable> extends FileTemp<List<T>>
 {
+    protected static final String EXTENSION = "csv";
     private static final String DELIMITER = ",";
     private static final String SEPARATOR = "\n";
-    private final String[] header;
+    private String header;
 
-    public CsvFile(String fileName, String[] header) {
-
+    public CsvFile(String fileName) {
         super("/csv", fileName);
-        this.header = header;
-
     }
 
 
     @Override
-    public void writeFile(Map<String, T> data) throws IOException {
+    public void writeFile(List<T> data) throws IOException {
 
+        try {
+
+            File file = new File(this.directory, this.fileName);
+            FileWriter csv = new FileWriter(file);
+
+            try {
+                // En-tête du csv
+                csv.write(data.getFirst().headerForCsv());
+                csv.write(SEPARATOR);
+
+                // Données
+                for (T value : data) {
+                    csv.write(value.dataForCsv());
+                    csv.write(SEPARATOR);
+                }
+
+                csv.flush();
+                System.out.println("Les données ont été exportées");
+            } finally {
+                csv.close();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public Map<String, T> readFile() throws IOException {
-        return Map.of();
+    public List<T> readFile() throws IOException {
+        return null;
+    }
+
+    @Override
+    protected String getExtension() {
+        return EXTENSION;
     }
 }

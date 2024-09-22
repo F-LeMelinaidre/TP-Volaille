@@ -1,5 +1,6 @@
 package menu;
 
+import asset.VolailleType;
 import controller.VolailleGroupController;
 
 import static menu.Config.SUB_ACTION;
@@ -37,8 +38,11 @@ public class SubMenu extends Menu
                 break;
             case 3:
                 VolailleGroupController vollaileGroup = VolailleGroupController.getINSTANCE();
-                boolean result = vollaileGroup.readAll(this.choice); //TODO ATTRIBUER LA VALEUR A UN AUTRE ATTRIBUT POUR UNE MEILLEUR COMPREHENSION lastChoice
+                VolailleType type = (this.choice !=0) ? VolailleType.getById(this.choice) : null; //TODO Changer le nom this.choice pour plus de lisibilité
+
+                boolean result = vollaileGroup.readAll(type);
                 menu = (result) ? MenuManager.VOLAILLE_MENU : MenuManager.MAIN_MENU;
+
                 break;
             case 4:
                 menu = MenuManager.MAIN_MENU;

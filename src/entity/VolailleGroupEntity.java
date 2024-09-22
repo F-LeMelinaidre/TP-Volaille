@@ -3,16 +3,16 @@ package entity;
 import asset.VolailleType;
 import util.DateConverter;
 import util.IdManager;
+import util.fileManager.CsvSerializable;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class VolailleGroupEntity implements Serializable
+public class VolailleGroupEntity implements Serializable, CsvSerializable
 {
     private static final long serialVersionUID = 1L;
     private static Map<String, VolailleGroupEntity> volailleGroupMap = new HashMap<>();
@@ -145,5 +145,15 @@ public class VolailleGroupEntity implements Serializable
     @Override
     public String toString() {
         return "VolailleGroupEntity{" + "idGroup='" + idGroup + '\'' + ", entryDate='" + entryDate + '\'' + ", " + "groupsType=" + groupsType.name() + ", quantityItems=" + quantityItems + ", entryAge=" + entryAge + ", averageWeight=" + averageWeight + '}';
+    }
+
+    @Override
+    public String headerForCsv() {
+        return "Identifiant, Date d'entrée, Type de volaille, Quantité, Age d'entrée, Poids moyen";
+    }
+
+    @Override
+    public String dataForCsv() {
+        return idGroup + "," + entryDate + "," + groupsType + "," + quantityItems + "," + entryAge + "," + averageWeight + "\n";
     }
 }
