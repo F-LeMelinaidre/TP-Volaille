@@ -4,14 +4,16 @@ import asset.VolailleType;
 import util.DateConverter;
 import util.IdManager;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class VolailleGroupEntity {
-
+public class VolailleGroupEntity implements Serializable
+{
+    private static final long serialVersionUID = 1L;
     private static Map<String, VolailleGroupEntity> volailleGroupMap = new HashMap<>();
     private String idGroup;
     private String entryDate;
@@ -93,6 +95,10 @@ public class VolailleGroupEntity {
         return this.averageWeight;
     }
 
+
+    public static void setVolailleGroupMap(Map<String, VolailleGroupEntity> data) {
+        volailleGroupMap = data;
+    }
 
     public static Map<String, VolailleGroupEntity> getVolailleGroupMap() {
         return volailleGroupMap;

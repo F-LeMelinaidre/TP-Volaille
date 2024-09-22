@@ -1,31 +1,58 @@
 package controller;
 
-public class App {
-    /*private static App instance;
-    private MenuRenderer menu;
-    private IMenuHandler currentHandler;*/
+import entity.VolailleGroupEntity;
+import menu.Menu;
+import menu.MenuManager;
+import util.fileManager.BinarieFile;
 
-    private App() {
-        /*this.menu = new MenuRenderer();
-        // Créer une instance de NavigationManager
-        // Passer l'instance de NavigationManager au MainMenuHandler
-        this.currentHandler = new MainMenuHandler(menu);*/
-    }
+import java.io.IOException;
+import java.util.Map;
 
-    /*public static App getInstance() {
-        if (instance == null) {
-            instance = new App();
-        }
-        return instance;
-    }
+public class App
+{
 
-    public void setCurrentHandler(IMenuHandler handler) {
-        this.currentHandler = handler;
+    private Menu currentMenu;
+
+    public App() {
+        MenuManager.init(this);
+        this.currentMenu = MenuManager.MAIN_MENU;
+        this.loadBinaryData();
     }
 
     public void run() {
-        *//*while (true) {
-            currentHandler.handleMenu();
-        }*//*
-    }*/
+        while (true) {
+            currentMenu = currentMenu.display();
+        }
+    }
+
+    private void loadBinaryData() {
+        System.out.println("Chargement des données...");
+
+        BinarieFile<VolailleGroupEntity> bf = new BinarieFile<>("volaille_list");
+
+        try {
+            Map<String, VolailleGroupEntity> data = bf.readFile();
+            if (data != null) {
+                VolailleGroupEntity.setVolailleGroupMap(data);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void close() {
+        System.out.println("Enregistrement des données...");
+
+        //TODO Modifier les execptions avec log4J2
+        BinarieFile<VolailleGroupEntity> bf = new BinarieFile<>("volaille_list");
+
+        try {
+            bf.writeFile(VolailleGroupEntity.getVolailleGroupMap());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("A bientôt !");
+        System.exit(0);
+    }
+
 }

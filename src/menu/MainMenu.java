@@ -1,6 +1,7 @@
 package menu;
 
 import asset.VolailleType;
+import controller.App;
 import controller.VolailleGroupController;
 
 public class MainMenu extends Menu {
@@ -38,8 +39,7 @@ public class MainMenu extends Menu {
             case 3:
                 break;
             case 4:
-                System.out.println("Au revoir !");
-                System.exit(0);
+                app.close();
                 break;
             default:
                 System.out.println("Option invalide, veuillez réessayer.");
