@@ -1,5 +1,7 @@
 package menu;
 
+import controller.VolailleGroupController;
+
 import static menu.Config.SUB_ACTION;
 
 public class SubMenu extends Menu
@@ -34,12 +36,15 @@ public class SubMenu extends Menu
                 System.out.println("Export");
                 break;
             case 3:
-                menu = MenuManager.VOLAILLE_MENU;
+                VolailleGroupController vollaileGroup = VolailleGroupController.getINSTANCE();
+                boolean result = vollaileGroup.readAll(this.choice); //TODO ATTRIBUER LA VALEUR A UN AUTRE ATTRIBUT POUR UNE MEILLEUR COMPREHENSION lastChoice
+                menu = (result) ? MenuManager.VOLAILLE_MENU : MenuManager.MAIN_MENU;
                 break;
             case 4:
                 menu = MenuManager.MAIN_MENU;
+                break;
             default:
-                System.out.println("Option invalide, veuillez réessayer.");
+                System.out.println("Option invalide, sssveuillez réessayer.");
         }
         return menu;
     }

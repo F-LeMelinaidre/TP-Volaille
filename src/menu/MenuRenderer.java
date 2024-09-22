@@ -60,7 +60,11 @@ public class MenuRenderer
     }
 
     public void render() {
-        System.out.println(this.createHeader(this.title));
+        if (this.title != null) {
+            System.out.println(this.createHeader(this.title));
+        } else {
+            System.out.println(this.createSeparator(Direction.TOP));
+        }
 
         for (String option : this.options) {
             System.out.println(this.createLine(option, Justify.LEFT));
@@ -68,7 +72,8 @@ public class MenuRenderer
 
         System.out.println(this.createSeparator(Direction.BOTTOM));
         System.out.print("Choisissez une option : ");
-        width = 0;
+        this.width = 0;
+        this.title = null;
     }
 
     /**

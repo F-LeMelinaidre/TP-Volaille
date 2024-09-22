@@ -1,11 +1,15 @@
 package menu;
 
+import asset.VolailleType;
+import controller.VolailleGroupController;
 import static menu.Config.ACTION;
 
 public class VolailleMenu extends Menu
 {
+    private VolailleGroupController vollaileGroup;
 
     public VolailleMenu() {
+
         for (String option : ACTION) {
             this.options.add(option);
         }
@@ -14,7 +18,9 @@ public class VolailleMenu extends Menu
 
     @Override
     public Menu display() {
-        String title = (this.choice == 0) ? "Volailles" : TypeVolaille.getById(this.choice).getLabel();
+        VolailleType type = (this.choice == 0) ? null : VolailleType.getById(this.choice);
+
+        String title = (this.choice == 0) ? "Volailles" : type.getName();
         menuRenderer.setTitle(title);
         menuRenderer.setOptions(this.options);
         menuRenderer.render();
@@ -25,11 +31,14 @@ public class VolailleMenu extends Menu
         Menu menu = this;
         switch (choice) {
             case 0:
-                System.out.println("Ajouter");
+                vollaileGroup = VolailleGroupController.getINSTANCE();
+                vollaileGroup.create(type);
+
                 break;
             case 1:
-                System.out.println("Afficher / Rechercher");
-                menu = MenuManager.SUB_ACTION;
+                vollaileGroup = VolailleGroupController.getINSTANCE();
+                boolean result = vollaileGroup.read();
+                menu = (result) ? MenuManager.SUB_ACTION : MenuManager.VOLAILLE_MENU;
                 break;
             case 2:
                 System.out.println("Export");

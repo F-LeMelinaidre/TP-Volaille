@@ -1,15 +1,18 @@
 package menu;
 
+import asset.VolailleType;
+import controller.VolailleGroupController;
+
 public class MainMenu extends Menu {
 
     public MainMenu() {
 
-        this.options.add("Tous");
+        this.options.add("Afficher tous les lots");
 
-        for (TypeVolaille type : TypeVolaille.values()) {
-            this.options.add(type.getLabel());
+        for (VolailleType type : VolailleType.values()) {
+            this.options.add("Afficher les lots de " + type.getName());
         }
-
+        this.options.add("Modifier les tarifs");
         this.options.add("Quitter");
     }
     @Override
@@ -27,11 +30,14 @@ public class MainMenu extends Menu {
             case 0:
             case 1:
             case 2:
-                menu =  MenuManager.VOLAILLE_MENU;
+                VolailleGroupController vollaileGroup = VolailleGroupController.getINSTANCE();
+                boolean result = vollaileGroup.readAll(choice);
+                menu = (result) ? MenuManager.VOLAILLE_MENU : MenuManager.MAIN_MENU;
                 menu.setChoice(choice);
-
                 break;
             case 3:
+                break;
+            case 4:
                 System.out.println("Au revoir !");
                 System.exit(0);
                 break;

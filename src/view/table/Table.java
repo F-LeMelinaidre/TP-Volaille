@@ -28,7 +28,8 @@ public abstract class Table<T> {
         this.columnWidths = this.calculateColumnWidths();
     }
 
-    public void render() {
+    public boolean render() {
+        boolean result = false;
         if (dataList == null || dataList.isEmpty()) {
             System.out.println("Aucun élément à afficher.");
         } else {
@@ -41,7 +42,9 @@ public abstract class Table<T> {
             }
 
             System.out.println(this.createSeparator(Direction.BOTTOM));
+            result = true;
         }
+        return result;
     }
 
     /**

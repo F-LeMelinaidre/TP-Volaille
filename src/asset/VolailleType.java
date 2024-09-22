@@ -1,21 +1,19 @@
 package asset;
 
-import java.util.ArrayList;
-
 public enum VolailleType {
 
     CANARD (1, "Canards"/*3.60*/),
     POULET (2, "Poulets"/*2.15*/);
 
     private int id;
-    private String label;
+    private String Name;
 
     /*private final double poidsAbbatage;
     private double prixKilo = 0.0;*/
 
     VolailleType(int id, String label/*double poidsAbbatage*/) {
         this.id = id;
-        this.label = label;
+        this.Name = label;
 
         /*this.poidsAbbatage = poidsAbbatage;*/
     }
@@ -32,7 +30,7 @@ public enum VolailleType {
     }
 
     public int getId() { return id; }
-    public String getLabel() { return label; }
+    public String getName() { return Name; }
 
     /*public double getPoidsAbbatage() {
         return poidsAbbatage;
