@@ -4,21 +4,23 @@ import asset.VolailleType;
 import util.DateConverter;
 import util.IdManager;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class VolailleGroupEntity {
-
+public class VolailleGroupEntity implements Serializable
+{
+    private static final long serialVersionUID = 1L;
     private static Map<String, VolailleGroupEntity> volailleGroupMap = new HashMap<>();
-    private        String                           idGroup;
-    private        String                           entryDate;
-    private        VolailleType                     groupsType;
-    private        int                              quantityItems;
-    private        int                              entryAge;
-    private        double                           averageWeight;
+    private String idGroup;
+    private String entryDate;
+    private VolailleType groupsType;
+    private int quantityItems;
+    private int entryAge;
+    private double averageWeight;
 
 
     public VolailleGroupEntity(String entryDate, VolailleType groupsType, int quantityItems, int entryAge,
@@ -80,9 +82,9 @@ public class VolailleGroupEntity {
     }
 
     public long getCurrentAge() {
-        Calendar  entryDate      = this.getEntryCalendarDate();
+        Calendar entryDate = this.getEntryCalendarDate();
         LocalDate localDateEntry = DateConverter.CalendarToLocalDate(entryDate);
-        LocalDate currentDate    = LocalDate.now();
+        LocalDate currentDate = LocalDate.now();
 
         long daysBetween = ChronoUnit.DAYS.between(localDateEntry, currentDate);
         return daysBetween / 7;
@@ -93,6 +95,10 @@ public class VolailleGroupEntity {
         return this.averageWeight;
     }
 
+
+    public static void setVolailleGroupMap(Map<String, VolailleGroupEntity> data) {
+        volailleGroupMap = data;
+    }
 
     public static Map<String, VolailleGroupEntity> getVolailleGroupMap() {
         return volailleGroupMap;

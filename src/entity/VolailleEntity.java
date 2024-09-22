@@ -5,7 +5,8 @@ import asset.VolailleType;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class VolailleEntity {
+public abstract class VolailleEntity
+{
 
     private static Map<String, VolailleEntity> volailleMap = new HashMap<>();
     private static int idCounter = 0;
@@ -13,16 +14,16 @@ public abstract class VolailleEntity {
     protected String id;
     protected String idGroup;
     protected String entryDate;
-    protected double       weight;
-    protected int          entryAge;
+    protected double weight;
+    protected int entryAge;
     protected VolailleType type;
 
     public VolailleEntity(String groupId, String entryDate, double weight, int entryAge, VolailleType type) {
         this.idGroup = groupId;
         this.entryDate = entryDate;
-        this.weight   = weight;
+        this.weight = weight;
         this.entryAge = entryAge;
-        this.type     = type;
+        this.type = type;
 
         this.id = this.generateId();
     }
@@ -38,7 +39,9 @@ public abstract class VolailleEntity {
     }
 
     public static Map<String, VolailleEntity> getVolailleMap() {
-        if (volailleMap == null) volailleMap = new HashMap<String, VolailleEntity>();
+        if (volailleMap == null) {
+            volailleMap = new HashMap<String, VolailleEntity>();
+        }
         return volailleMap;
     }
 
@@ -48,6 +51,7 @@ public abstract class VolailleEntity {
 
     @Override
     public String toString() {
-        return "VolailleEntity{" + "id='" + id + '\'' + ", idGroup='" + idGroup + '\'' + ", entryDate='" + entryDate + '\'' + ", weight=" + weight + ", age=" + entryAge + ", type=" + type.name() + '}';
+        return "VolailleEntity{" + "id='" + id + '\'' + ", idGroup='" + idGroup + '\'' + ", entryDate='" + entryDate +
+               '\'' + ", weight=" + weight + ", age=" + entryAge + ", type=" + type.name() + '}';
     }
 }
